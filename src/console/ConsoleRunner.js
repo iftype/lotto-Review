@@ -11,15 +11,12 @@ export default class ConsoleRunner {
 
   async run() {
     do {
-      await this.#playOnce();
+      await this.#processPurchase();
+      await this.#processWinning();
+      await this.#processResult();
+       
       this.#controller.reset();
     } while (await this.#readIsRetry());
-  }
-
-  async #playOnce() {
-    await this.#processPurchase();
-    await this.#processWinning();
-    await this.#processResult();
   }
 
   async #processPurchase() {
