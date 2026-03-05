@@ -17,8 +17,8 @@ class Rank {
 
   static order = [Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH];
 
-  constructor({ winning, hasBonus }) {
-    this.winning = winning;
+  constructor({ matchCount, hasBonus }) {
+    this.matchCount = matchCount;
     this.hasBonus = hasBonus;
   }
 
@@ -31,12 +31,12 @@ class Rank {
     return PRIZE.MISS;
   }
 
-  static getRank({ winning, hasBonus }) {
-    if (winning === 6) return Rank.FIRST;
-    if (winning === 5 && hasBonus) return Rank.SECOND;
-    if (winning === 5) return Rank.THIRD;
-    if (winning === 4) return Rank.FOURTH;
-    if (winning === 3) return Rank.FIFTH;
+  static getRank({ matchCount, hasBonus }) {
+    if (matchCount === 6) return Rank.FIRST;
+    if (matchCount === 5 && hasBonus) return Rank.SECOND;
+    if (matchCount === 5) return Rank.THIRD;
+    if (matchCount === 4) return Rank.FOURTH;
+    if (matchCount === 3) return Rank.FIFTH;
     return Rank.MISS;
   }
 }
