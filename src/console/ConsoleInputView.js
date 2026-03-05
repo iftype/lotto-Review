@@ -1,49 +1,24 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INFO } from "../constants/messages.js";
-import { ANSWER } from "../constants/rules.js";
-import { Validator } from "../utils/Validator.js";
-class ConsoleInputView {
-  static async #readLine(message) {
-    return await Console.readLineAsync(message);
-  }
 
-  static #readNumber(input) {
-    Validator.isNumber(Number(input));
-    return Number(input);
-  }
-
-  static #readNumberList(input) {
-    const parsedInputList = input.split(",").map((v) => Number(v.trim()));
-    parsedInputList.map(Validator.isNumber);
-    return parsedInputList;
-  }
-
-  static #readYesOrNo(answer) {
-    const lowerAnswer = answer.toLowerCase().trim();
-    if (ANSWER.YES === lowerAnswer) return "y";
-    if (ANSWER.NO === lowerAnswer) return "n";
-    throw new Error("[ERROR] y 또는 n을 입력해야 합니다.");
-  }
-
+export default class ConsoleInputView {
   static async readPurchaseAmount() {
-    const input = await this.#readLine(INFO.PURCHASE_AMOUNT);
-    return this.#readNumber(input);
+    return Console.readLineAsync(INFO.PURCHASE_AMOUNT);
   }
 
   static async readWinningNumbers() {
-    const input = await this.#readLine(INFO.WINNING_NUMBERS);
-    return this.#readNumberList(input);
+    return Console.readLineAsync(INFO.WINNING_NUMBERS);
   }
 
   static async readBonusNumber() {
-    const input = await this.#readLine(INFO.BONUS_NUMBER);
-    return this.#readNumber(input);
+    return Console.readLineAsync(INFO.BONUS_NUMBER);
   }
 
   static async readIsRetry() {
-    const input = await this.#readLine(INFO.ASK_RETRY);
-    return this.#readYesOrNo(input);
+    const input = await Console.readLineAsync(INFO.ASK_RETRY);
+    const answer = input.toLowerCase().trim();
+    if (answer === "y") return true;
+    if (answer === "n") return false;
+    throw new Error("y 또는 n을 입력해 주세요.");
   }
 }
-
-export default ConsoleInputView;

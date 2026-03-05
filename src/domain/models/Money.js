@@ -9,7 +9,7 @@ class Money {
 
   #validate(amount) {
     if (amount < Money.UNIT) {
-      throw new Error("[ERROR] 로또를 구매할 수 없습니다");
+      throw new Error("로또를 구매할 수 없습니다");
     }
   }
 
